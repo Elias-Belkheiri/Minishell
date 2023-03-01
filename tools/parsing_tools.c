@@ -6,30 +6,28 @@
 /*   By: ebelkhei <ebelkhei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 16:35:45 by ebelkhei          #+#    #+#             */
-/*   Updated: 2023/02/26 19:17:39 by ebelkhei         ###   ########.fr       */
+/*   Updated: 2023/03/01 15:30:52 by ebelkhei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	set_operator(t_token *token, char **cmd, t_out **out)
+void	set_operator(t_token *token, t_redirection **redirection, int type)
 {
-	if (!out && token->next && token->next->token)
-		*cmd = ft_strdup(token->next->token);
-	else if (out && token->next && token->next->token)
-		ft_lstadd_back_4(out, ft_lstnew_4(ft_strdup(token->next->token)));
+	if (token->next)
+		ft_lstadd_back_4(redirection, ft_lstnew_4(ft_strdup(token->next->token), type));
 }
 
 void	is_operator(t_token *token, t_cmd *cmd)
 {
 	if (!ft_strcmp(token->token, "<<"))
-		set_operator(token, &cmd->here_doc, NULL);
-	else if (!ft_strcmp(token->token, ">>"))
-		set_operator(token, &cmd->append, NULL);
+		set_operator(token, &cmd->in, HERE_DOC);
 	else if (*(token->token) == '<')
-		set_operator(token, &cmd->in, NULL);
+		set_operator(token, &cmd->in, IN);
+	else if (!ft_strcmp(token->token, ">>"))
+		set_operator(token, &cmd->out, APPEND);
 	else if (*(token->token) == '>')
-		set_operator(token, NULL, &cmd->out);
+		set_operator(token, &cmd->out, OUT);
 }
 
 void	hyphen_expansion(t_token *token, t_env *env)

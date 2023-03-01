@@ -6,7 +6,7 @@
 /*   By: ebelkhei <ebelkhei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 15:27:39 by ebelkhei          #+#    #+#             */
-/*   Updated: 2023/02/26 19:19:13 by ebelkhei         ###   ########.fr       */
+/*   Updated: 2023/03/01 14:56:12 by ebelkhei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,14 +49,15 @@ t_cmd	*ft_lstnew_3(void)
 	return (ptr);
 }
 
-t_out	*ft_lstnew_4(char *out)
+t_redirection	*ft_lstnew_4(char *out, int type)
 {
-	t_out	*ptr;
+	t_redirection	*ptr;
 
-	ptr = malloc(sizeof(t_out));
+	ptr = malloc(sizeof(t_redirection));
 	if (!ptr)
 		return (NULL);
-	ptr->out = out;
+	ptr->redirection = out;
+	ptr->type = type;
 	ptr->next = NULL;
 	return (ptr);
 }

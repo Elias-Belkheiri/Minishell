@@ -6,7 +6,7 @@
 /*   By: ebelkhei <ebelkhei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 15:27:03 by ebelkhei          #+#    #+#             */
-/*   Updated: 2023/02/26 19:13:25 by ebelkhei         ###   ########.fr       */
+/*   Updated: 2023/03/01 14:55:54 by ebelkhei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,9 @@ void	ft_lstadd_back_3(t_cmd **lst, t_cmd *new)
 	prv->next = new;
 }
 
-void	ft_lstadd_back_4(t_out **lst, t_out *new)
+void	ft_lstadd_back_4(t_redirection **lst, t_redirection *new)
 {
-	t_out	*prv;
+	t_redirection	*prv;
 
 	prv = *lst;
 	if (!(*lst))

@@ -6,7 +6,7 @@
 /*   By: ebelkhei <ebelkhei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 15:27:14 by ebelkhei          #+#    #+#             */
-/*   Updated: 2023/03/01 11:02:14 by ebelkhei         ###   ########.fr       */
+/*   Updated: 2023/03/01 15:04:31 by ebelkhei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@ void	ft_lstclear(t_token **lst)
 	*lst = NULL;
 }
 
-void	ft_lstclear_2(t_out **lst)
+void	ft_lstclear_2(t_redirection **lst)
 {
-	t_out	*ptr;
-	t_out	*tmp;
+	t_redirection	*ptr;
+	t_redirection	*tmp;
 
 	if (!lst)
 		return ;
@@ -40,7 +40,7 @@ void	ft_lstclear_2(t_out **lst)
 	while (ptr)
 	{
 		tmp = ptr->next;
-		free(ptr->out);
+		free(ptr->redirection);
 		ptr = tmp;
 	}
 	*lst = NULL;

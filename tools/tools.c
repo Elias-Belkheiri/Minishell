@@ -6,7 +6,7 @@
 /*   By: ebelkhei <ebelkhei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 13:37:04 by ebelkhei          #+#    #+#             */
-/*   Updated: 2023/03/01 10:55:26 by ebelkhei         ###   ########.fr       */
+/*   Updated: 2023/03/01 15:31:25 by ebelkhei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,15 @@ int ft_error(t_token **tokens)
     return (0);
 }
 
+int	check_spaces(t_token *tok)
+{
+	while (tok && tok->type == SPACE)
+		tok = tok->next;
+	if (!tok)
+		return (1);
+	return (0);
+}
+
 int check_syntax_errors(t_token *token)
 {
 	t_token	*tmp;
@@ -49,6 +58,8 @@ int check_syntax_errors(t_token *token)
 		return (ft_putendl_fd("syntax error near unexpected token", "newline", 2));
 	while (token)
 	{
+		if ((token->type == OPERATOR || token->type == PIPE) && check_spaces(token->next))
+			return (ft_putendl_fd("syntax error ", "Baby", 2));
 		if (tmp)
 		{
 			if ((tmp->type == OPERATOR || tmp->type == PIPE) && (token->type == OPERATOR || token->type == PIPE))
