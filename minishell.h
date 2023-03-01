@@ -6,7 +6,7 @@
 /*   By: ebelkhei <ebelkhei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 11:29:33 by ebelkhei          #+#    #+#             */
-/*   Updated: 2023/02/27 12:59:25 by ebelkhei         ###   ########.fr       */
+/*   Updated: 2023/03/01 11:02:33 by ebelkhei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,6 +131,7 @@ void	ft_trim(t_token *tok);
 char	*ft_itoa(int n);
 void	ft_lstadd_back_4(t_out **lst, t_out *new);
 t_out	*ft_lstnew_4(char *out);
+void	ft_lstclear_2(t_out **lst);
 // int		ft_lstsize(t_token *lst);
 // t_token	*ft_lstlast(t_token *lst);
 // void	ft_lstadd_front(t_token **lst, t_token *new);

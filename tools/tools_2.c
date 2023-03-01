@@ -6,7 +6,7 @@
 /*   By: ebelkhei <ebelkhei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 16:31:56 by ebelkhei          #+#    #+#             */
-/*   Updated: 2023/02/26 19:15:38 by ebelkhei         ###   ########.fr       */
+/*   Updated: 2023/03/01 11:00:54 by ebelkhei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ void	clear_cmds(t_cmd **cmds)
 		if (tmp->in)
 			free((tmp->in));
 		if (tmp->out)
-			free((tmp->out));
+			ft_lstclear_2(&tmp->out);
 		if (tmp->append)
 			free((tmp->append));
 		if (tmp->here_doc)

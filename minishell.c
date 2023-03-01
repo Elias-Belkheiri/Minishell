@@ -6,7 +6,7 @@
 /*   By: ebelkhei <ebelkhei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 11:32:23 by ebelkhei          #+#    #+#             */
-/*   Updated: 2023/02/27 12:59:58 by ebelkhei         ###   ########.fr       */
+/*   Updated: 2023/03/01 11:08:10 by ebelkhei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ int	main(int argc, char *argv[], char *envp[])
 			{
 				expansion(tokens, environment, &tokens);
 				del_spaces(tokens, &tokens);
-				// print_data(tokens);
 				// print_data(tokens);
 				parse_cmds(&cmds, &tokens);
 				print_cmd(cmds);

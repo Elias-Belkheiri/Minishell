@@ -6,7 +6,7 @@
 /*   By: ebelkhei <ebelkhei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 13:37:04 by ebelkhei          #+#    #+#             */
-/*   Updated: 2023/02/25 11:06:28 by ebelkhei         ###   ########.fr       */
+/*   Updated: 2023/03/01 10:55:26 by ebelkhei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ int check_syntax_errors(t_token *token)
 	t_token	*tmp;
 
 	tmp = NULL;
+	if (token && token->type == PIPE)
+		return (ft_putendl_fd("syntax error near unexpected token", "|", 2));
 	if (token && !token->next && (token->type == OPERATOR || token->type == PIPE))
 		return (ft_putendl_fd("syntax error near unexpected token", "newline", 2));
 	while (token)

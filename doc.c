@@ -6,7 +6,7 @@
 /*   By: ebelkhei <ebelkhei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 16:22:37 by ebelkhei          #+#    #+#             */
-/*   Updated: 2023/02/25 15:53:49 by ebelkhei         ###   ########.fr       */
+/*   Updated: 2023/03/01 10:55:52 by ebelkhei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 // "> out > out2"
 // echo $"USER"
 // << $VAR
-
+// handle pipes syntax errors
 #include "minishell.h"
 
 void	var_expansion(t_env *env, char *token)
