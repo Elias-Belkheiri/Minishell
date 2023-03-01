@@ -6,7 +6,7 @@
 /*   By: ebelkhei <ebelkhei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 11:29:33 by ebelkhei          #+#    #+#             */
-/*   Updated: 2023/03/01 15:01:29 by ebelkhei         ###   ########.fr       */
+/*   Updated: 2023/03/01 16:22:05 by ebelkhei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ t_info	g_global_data;
 
 typedef struct t_token
 {
-	char			*token;
+	char			*content;
 	int				type;
 	struct t_token	*next;
 }	t_token;

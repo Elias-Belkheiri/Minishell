@@ -6,7 +6,7 @@
 /*   By: ebelkhei <ebelkhei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 16:35:45 by ebelkhei          #+#    #+#             */
-/*   Updated: 2023/03/01 15:30:52 by ebelkhei         ###   ########.fr       */
+/*   Updated: 2023/03/01 16:26:56 by ebelkhei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,18 @@
 void	set_operator(t_token *token, t_redirection **redirection, int type)
 {
 	if (token->next)
-		ft_lstadd_back_4(redirection, ft_lstnew_4(ft_strdup(token->next->token), type));
+		ft_lstadd_back_4(redirection, ft_lstnew_4(ft_strdup(token->next->content), type));
 }
 
 void	is_operator(t_token *token, t_cmd *cmd)
 {
-	if (!ft_strcmp(token->token, "<<"))
+	if (!ft_strcmp(token->content, "<<"))
 		set_operator(token, &cmd->in, HERE_DOC);
-	else if (*(token->token) == '<')
+	else if (*(token->content) == '<')
 		set_operator(token, &cmd->in, IN);
-	else if (!ft_strcmp(token->token, ">>"))
+	else if (!ft_strcmp(token->content, ">>"))
 		set_operator(token, &cmd->out, APPEND);
-	else if (*(token->token) == '>')
+	else if (*(token->content) == '>')
 		set_operator(token, &cmd->out, OUT);
 }
 
@@ -36,8 +36,8 @@ void	hyphen_expansion(t_token *token, t_env *env)
 
 	if (token)
 	{
-		tmp = token->token;
-		token->token = get_expansion(env, ft_strdup("HOME"));
+		tmp = token->content;
+		token->content = get_expansion(env, ft_strdup("HOME"));
 		free(tmp);
 	}
 }

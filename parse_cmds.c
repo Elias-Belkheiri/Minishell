@@ -6,7 +6,7 @@
 /*   By: ebelkhei <ebelkhei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 11:36:22 by ebelkhei          #+#    #+#             */
-/*   Updated: 2023/02/26 17:18:54 by ebelkhei         ###   ########.fr       */
+/*   Updated: 2023/03/01 16:26:56 by ebelkhei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ void	fill_cmd(t_cmd *cmd, t_token *token, int *i)
 		return ;
 	if ((token->type == WORD || token->type == DOUBLE
 			|| token->type == SINGLE || token->type == HYPHEN) && cmd->cmd)
-		cmd->cmd[(*i)++] = ft_strdup(token->token);
-	else if (*(token->token) == '|')
+		cmd->cmd[(*i)++] = ft_strdup(token->content);
+	else if (*(token->content) == '|')
 	{
-		if (token->next && token->next->token)
+		if (token->next && token->next->content)
 			cmd->pipe = 1;
 	}
 }

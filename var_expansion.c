@@ -6,7 +6,7 @@
 /*   By: ebelkhei <ebelkhei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 14:59:11 by ebelkhei          #+#    #+#             */
-/*   Updated: 2023/02/27 13:32:53 by ebelkhei         ###   ########.fr       */
+/*   Updated: 2023/03/01 16:26:56 by ebelkhei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,20 +65,20 @@ void	var_expansion(t_env *env, t_token *tok)
 	i = 0;
 	tmp[0] = NULL;
 	tmp[2] = NULL;
-	while (tok->token[i] && !must_expand(tok->token[i], tok->token[i + 1]))
+	while (tok->content[i] && !must_expand(tok->content[i], tok->content[i + 1]))
 		i++;
-	if (!tok->token[i] || !tok->token[i + 1])
+	if (!tok->content[i] || !tok->content[i + 1])
 		return ;
 	if (i)
-		tmp[0] = ft_substr(tok->token, 0, i);
-	j = i + 1 + check_digits(tok->token + i + 1);
-	expansion = get_expansion(env, ft_substr(tok->token, i + 1, j - i - 1));
+		tmp[0] = ft_substr(tok->content, 0, i);
+	j = i + 1 + check_digits(tok->content + i + 1);
+	expansion = get_expansion(env, ft_substr(tok->content, i + 1, j - i - 1));
 	tmp[1] = ft_strjoin(tmp[0], expansion);
 	free(expansion);
-	if (ft_strlen(tok->token + j))
-		tmp[2] = ft_substr(tok->token, j, ft_strlen(tok->token + j));
-	free(tok->token);
-	tok->token = ft_strjoin(tmp[1], tmp[2]);
+	if (ft_strlen(tok->content + j))
+		tmp[2] = ft_substr(tok->content, j, ft_strlen(tok->content + j));
+	free(tok->content);
+	tok->content = ft_strjoin(tmp[1], tmp[2]);
 	ft_free(tmp[1], tmp[2]);
 	var_expansion(env, tok);
 }
@@ -89,21 +89,21 @@ void	ft_trim(t_token *tok)
 
 	while (tok)
 	{
-		tmp = tok->token;
+		tmp = tok->content;
 		if (!*tmp)
 		{
 			free (tmp);
-			tok->token = ft_strdup("");
+			tok->content = ft_strdup("");
 			return ;
 		}
 		if (tok->type == DOUBLE)
 		{
-			tok->token = ft_strtrim(tok->token, "\"");
+			tok->content = ft_strtrim(tok->content, "\"");
 			free(tmp);
 		}
 		if (tok->type == SINGLE)
 		{
-			tok->token = ft_strtrim(tok->token, "\'");
+			tok->content = ft_strtrim(tok->content, "\'");
 			free(tmp);
 		}
 		tok = tok->next;
@@ -114,7 +114,7 @@ void	check_expansion(t_token *token, t_env *env)
 {
 	if (token->type == HYPHEN)
 			hyphen_expansion(token, env);
-	if ((token->type == DOUBLE || token->type == WORD) && ft_strlen(token->token) > 1)
+	if ((token->type == DOUBLE || token->type == WORD) && ft_strlen(token->content) > 1)
 		var_expansion(env, token);
 }
 
@@ -126,7 +126,7 @@ int	ft_join(t_token **token, t_token *bef)
 		return (0);
 	else
 	{
-		bef->token = ft_strjoin(bef->token, (*token)->token);
+		bef->content = ft_strjoin(bef->content, (*token)->content);
 		bef->next = (*token)->next;
 		ft_lstdelone(*token);
 		*token = bef->next;
@@ -139,15 +139,15 @@ void	ignore_exp_here_doc(t_token *tok)
 {
 	while (tok)
 	{
-		if (ft_strlen(tok->token) == 1 && *tok->token == '$')
+		if (ft_strlen(tok->content) == 1 && *tok->content == '$')
 		{
 			if (tok->next && (tok->next->type == DOUBLE || tok->next->type == SINGLE))
 			{
-				free(tok->token);
-				tok->token = ft_strdup("");
+				free(tok->content);
+				tok->content = ft_strdup("");
 			}
 		}
-		else if (ft_strlen(tok->token) == 2 && !ft_strcmp(tok->token, "<<"))
+		else if (ft_strlen(tok->content) == 2 && !ft_strcmp(tok->content, "<<"))
 		{
 			if (tok->next && tok->next->type == SPACE)
 			{

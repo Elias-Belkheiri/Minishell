@@ -6,7 +6,7 @@
 /*   By: ebelkhei <ebelkhei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 13:37:04 by ebelkhei          #+#    #+#             */
-/*   Updated: 2023/03/01 15:31:25 by ebelkhei         ###   ########.fr       */
+/*   Updated: 2023/03/01 16:26:56 by ebelkhei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	print_data(t_token *tokens)
 {
     while (tokens)
     {
-        printf("Content: %s\n", tokens->token);
+        printf("Content: %s\n", tokens->content);
         printf("Type: %d\n", tokens->type);
         tokens = tokens->next;
     }
@@ -63,7 +63,7 @@ int check_syntax_errors(t_token *token)
 		if (tmp)
 		{
 			if ((tmp->type == OPERATOR || tmp->type == PIPE) && (token->type == OPERATOR || token->type == PIPE))
-				return (ft_putendl_fd("syntax error near unexpected token", token->token, 2));
+				return (ft_putendl_fd("syntax error near unexpected token", token->content, 2));
 		}
 		tmp = token;
 		token = token->next;
