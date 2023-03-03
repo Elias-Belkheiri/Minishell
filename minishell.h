@@ -6,7 +6,7 @@
 /*   By: ebelkhei <ebelkhei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 11:29:33 by ebelkhei          #+#    #+#             */
-/*   Updated: 2023/03/01 16:22:05 by ebelkhei         ###   ########.fr       */
+/*   Updated: 2023/03/03 12:18:08 by ebelkhei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@
 # define SINGLE 5
 # define HYPHEN 6
 # define WORD 7
+# define SINGLE_EXPAND 8
 
 # define RED   "\x1B[31m"
 # define GRN   "\x1B[32m"
@@ -65,6 +66,7 @@ typedef struct t_redirection
 {
 	char					*redirection;
 	int						type;
+	int						should_expand;
 	struct t_redirection	*next;
 }	t_redirection;
 
@@ -137,10 +139,7 @@ char	*ft_itoa(int n);
 void	ft_lstadd_back_4(t_redirection **lst, t_redirection *new);
 t_redirection	*ft_lstnew_4(char *out, int type);
 void	ft_lstclear_2(t_redirection **lst);
-// int		ft_lstsize(t_token *lst);
-// t_token	*ft_lstlast(t_token *lst);
-// void	ft_lstadd_front(t_token **lst, t_token *new);
-// void	ft_lstiter(t_token *lst, void (*f)(void *));
-// t_token	*ft_lstmap(t_token *lst, void *(*f)(void *), void (*del)(void *));
+t_redirection	*ft_lstlast_3(t_redirection *lst);
+void	ft_lstdelone_2(t_redirection *lst);
 
 #endif

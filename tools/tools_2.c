@@ -6,7 +6,7 @@
 /*   By: ebelkhei <ebelkhei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 16:31:56 by ebelkhei          #+#    #+#             */
-/*   Updated: 2023/03/01 15:09:45 by ebelkhei         ###   ########.fr       */
+/*   Updated: 2023/03/03 11:36:12 by ebelkhei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int	is_expansion_separator(int a)
 void	print_cmd(t_cmd *command)
 {
 	int	i;
+	t_redirection *tmp;
 
 	i = 0;
 	while (command)
@@ -44,21 +45,26 @@ void	print_cmd(t_cmd *command)
 				printf("Arg: %s\n", command->cmd[i]);
 		}
 		i = 0;
-		while (command->out)
+		tmp = command->out;
+		while (tmp)
 		{
-			if (command->out->type == OUT)
-				printf("Out %d: %s\n", i++, command->out->redirection);
+			if (tmp->type == OUT)
+				printf("Out %d: %s\n", i++, tmp->redirection);
 			else
-				printf("Append %d: %s\n", i++, command->out->redirection);
-			command->out = command->out->next;
+				printf("Append %d: %s\n", i++, tmp->redirection);
+			tmp = tmp->next;
 		}
-		while (command->in)
+		tmp = command->in;
+		while (tmp)
 		{
-			if (command->in->type == IN)
-				printf("IN %d: %s\n", i++, command->in->redirection);
+			if (tmp->type == IN)
+				printf("IN %d: %s\n", i++, tmp->redirection);
 			else
-				printf("HERE_DOC %d: %s\n", i++, command->in->redirection);
-			command->in = command->in->next;
+				printf("HERE_DOC %d: %s\n", i++, tmp->redirection);
+			// if (command->in->should_expand)
+				printf("Variables Should Expand: %d\n", tmp->should_expand);
+			
+			tmp = tmp->next;
 		}
 		printf("Pipe: %d\n", command->pipe);
 		command = command->next;

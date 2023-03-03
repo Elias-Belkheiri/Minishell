@@ -12,7 +12,7 @@ SRCS				=	minishell.c tokenize.c ./lst_functions/ft_lstadd_back_bonus.c \
 
 CC					= 	cc
 
-CFLAGS				=	-Wall -Wextra -Werror -fsanitize=address -g3 -lreadline
+CFLAGS				=	-Wall -Wextra -Werror -lreadline
 
 all					:  ${NAME}
 

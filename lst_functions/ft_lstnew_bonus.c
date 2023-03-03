@@ -6,7 +6,7 @@
 /*   By: ebelkhei <ebelkhei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 15:27:39 by ebelkhei          #+#    #+#             */
-/*   Updated: 2023/03/01 16:25:00 by ebelkhei         ###   ########.fr       */
+/*   Updated: 2023/03/02 18:47:31 by ebelkhei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ t_redirection	*ft_lstnew_4(char *out, int type)
 	if (!ptr)
 		return (NULL);
 	ptr->redirection = out;
+	ptr->should_expand = 0;
 	ptr->type = type;
 	ptr->next = NULL;
 	return (ptr);

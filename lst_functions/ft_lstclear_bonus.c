@@ -6,7 +6,7 @@
 /*   By: ebelkhei <ebelkhei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 15:27:14 by ebelkhei          #+#    #+#             */
-/*   Updated: 2023/03/01 15:04:31 by ebelkhei         ###   ########.fr       */
+/*   Updated: 2023/03/02 19:05:20 by ebelkhei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void	ft_lstclear_2(t_redirection **lst)
 	{
 		tmp = ptr->next;
 		free(ptr->redirection);
+		free(ptr);
 		ptr = tmp;
 	}
 	*lst = NULL;

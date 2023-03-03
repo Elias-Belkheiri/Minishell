@@ -6,7 +6,7 @@
 /*   By: ebelkhei <ebelkhei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 15:27:03 by ebelkhei          #+#    #+#             */
-/*   Updated: 2023/03/01 14:55:54 by ebelkhei         ###   ########.fr       */
+/*   Updated: 2023/03/02 19:32:20 by ebelkhei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	ft_lstadd_back_4(t_redirection **lst, t_redirection *new)
 	t_redirection	*prv;
 
 	prv = *lst;
-	if (!(*lst))
+	if (!*lst)
 	{
 		*lst = new;
 		return ;
